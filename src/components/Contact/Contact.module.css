@@ -1,0 +1,25 @@
+.itemContainer {
+  display: flex;
+}
+
+.infoContainer {
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 105%;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.btn {
+  margin: auto 0;
+  padding: 5px;
+}

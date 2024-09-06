@@ -1,0 +1,26 @@
+.searchContainer {
+  max-width: 360px;
+}
+
+.searchTitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 105%;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.searchInput {
+  width: 100%;
+  margin-bottom: 25px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.searchInput:hover,
+.searchInput:focus {
+  border: 1px solid rgb(8, 127, 246);
+  cursor: pointer;
+}
