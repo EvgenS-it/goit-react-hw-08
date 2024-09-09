@@ -5,7 +5,7 @@ import { deleteContact } from '../../redux/contacts/contactsOps';
 import { FaUser } from 'react-icons/fa6';
 import { FaPhone } from 'react-icons/fa6';
 
-const Connact = ({ name, number, id }) => {
+const Contact = ({ name, number, id }) => {
   const { infoContainer, icon, text, btn } = css;
 
   const dispatch = useDispatch();
@@ -33,10 +33,10 @@ const Connact = ({ name, number, id }) => {
   );
 };
 
-Connact.propTypes = {
+Contact.propTypes = {
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
 
-export default Connact;
+export default Contact;

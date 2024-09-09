@@ -1,33 +1,38 @@
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import ContactForm from './ContactForm/ContactForm';
-import SearchBox from './SearchBox/SearchBox';
-import ContactList from './ContactList/ContactList';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchContacts } from '../redux/contacts/contactsOps.js';
-import {
-  selectContactsError,
-  selectContactsLoading,
-} from '../redux/contacts/contactsSelectors.js';
+import AppBar from './AppBar/AppBar.jsx';
+
+const HomePage = lazy(() => import('../pages/HomePage/HomePage.jsx'));
+const RegistrationPage = lazy(() =>
+  import('../pages/RegistrationPage/RegistrationPage.jsx')
+);
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage.jsx'));
+const ContactsPage = lazy(() =>
+  import('../pages/ContactsPage/ContactsPage.jsx')
+);
+const NotFoundPage = lazy(() =>
+  import('../pages/NotFoundPage/NotFoundPage.jsx')
+);
 
 function App() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectContactsLoading);
-  const isError = useSelector(selectContactsError);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      {isLoading && <h2>LOADING...</h2>}
-      {isError && <h2>Sorry something went wrong... Try again later.</h2>}
-      {!isLoading && !isError && <ContactList />}
-    </div>
+    <>
+      <header>
+        <AppBar />
+      </header>
+      <main>
+        <Suspense fallback={<h1>LOADING...</h1>}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/contacts" element={<ContactsPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </main>
+    </>
   );
 }
 
