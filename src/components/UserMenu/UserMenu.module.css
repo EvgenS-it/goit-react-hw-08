@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  padding: 15px;
+  gap: 15px;
+}
+
+.username {
+}

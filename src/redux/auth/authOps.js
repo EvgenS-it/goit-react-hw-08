@@ -9,20 +9,6 @@ const setAuthHeaders = token => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-export const login = createAsyncThunk(
-  'auth/login',
-  async (formData, thunkApi) => {
-    try {
-      const { data } = await instance.post('users/login', formData);
-      setAuthHeaders(data.token);
-      console.log('data from server:', data);
-      return data;
-    } catch (error) {
-      return thunkApi(error.message);
-    }
-  }
-);
-
 export const register = createAsyncThunk(
   'auth/register',
   async (formData, thunkApi) => {
@@ -32,7 +18,21 @@ export const register = createAsyncThunk(
       console.log('data:', data);
       return data;
     } catch (error) {
-      return thunkApi(error.message);
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const login = createAsyncThunk(
+  'auth/login',
+  async (formData, thunkApi) => {
+    try {
+      const { data } = await instance.post('users/login', formData);
+      setAuthHeaders(data.token);
+      console.log('data from server:', data);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );

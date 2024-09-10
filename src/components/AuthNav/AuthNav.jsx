@@ -9,7 +9,7 @@ const AuthNav = () => {
   return (
     <nav className={css.navigation}>
       <NavLink to="/register" className={classNames}>
-        Sign-up
+        Register
       </NavLink>
       <NavLink to="/login" className={classNames}>
         Login

@@ -1,9 +1,10 @@
 import css from './RegistrationPage.module.css';
 
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { register } from '../../redux/auth/authOps.js';
+import { selectAuthError } from '../../redux/auth/authSelectors.js';
 
 const RegisterValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -21,15 +22,15 @@ const RegisterValidationSchema = Yup.object().shape({
 
 const RegistrationPage = () => {
   const { form, label, title, input, btn, errorText } = css;
+  const dispatch = useDispatch();
 
+  const error = useSelector(selectAuthError);
   // for Formik
   const INITIAL_VALUES = {
     name: '',
     email: '',
     password: '',
   };
-
-  const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
     // const newUser = {
@@ -97,8 +98,12 @@ const RegistrationPage = () => {
               type="submit"
               className={btn}
             >
-              Sign Up
+              Register
             </button>
+
+            {error && (
+              <p className={errorText}>Oops, something went wrong.. {error}</p>
+            )}
           </Form>
         );
       }}
