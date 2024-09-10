@@ -1,9 +1,9 @@
 import css from './RegistrationPage.module.css';
 
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
-// import { registerUser } from '../../redux/auth/authOps.js';
+import { register } from '../../redux/auth/authOps.js';
 
 const RegisterValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -19,27 +19,27 @@ const RegisterValidationSchema = Yup.object().shape({
     .required('Password is required.'),
 });
 
-// for Formik
-const INITIAL_VALUES = {
-  name: '',
-  email: '',
-  password: '',
-};
-
 const RegistrationPage = () => {
   const { form, label, title, input, btn, errorText } = css;
 
-  // const dispatch = useDispatch();
+  // for Formik
+  const INITIAL_VALUES = {
+    name: '',
+    email: '',
+    password: '',
+  };
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
     // const newUser = {
-    //   name: values.userName,
-    //   number: values.userEmail,
-    //   password: values.userPassword,
+    //   name: values.name,
+    //   email: values.email,
+    //   password: values.password,
     // };
-    console.log('newUser:', values);
+    // console.log('newUser:', newUser);
 
-    // dispatch(registerUser(newUser));
+    dispatch(register(values));
     actions.resetForm();
   };
 
@@ -49,14 +49,14 @@ const RegistrationPage = () => {
       onSubmit={handleSubmit}
       validationSchema={RegisterValidationSchema}
     >
-      {() => {
+      {({ errors }) => {
         return (
           <Form className={form}>
             <label className={label}>
               <span className={title}>Name</span>
-              <Field className={input} type="text" name="userName" required />
+              <Field className={input} type="text" name="name" required />
               <ErrorMessage
-                name="userName"
+                name="name"
                 component="span"
                 className={errorText}
               />
@@ -66,12 +66,12 @@ const RegistrationPage = () => {
               <Field
                 className={input}
                 type="text"
-                name="userEmail"
+                name="email"
                 placeholder="example@mail.com"
                 required
               />
               <ErrorMessage
-                name="userEmail"
+                name="email"
                 component="span"
                 className={errorText}
               />
@@ -81,17 +81,22 @@ const RegistrationPage = () => {
               <Field
                 className={input}
                 type="password"
-                name="userPassword"
+                name="password"
+                autoComplete="off"
                 required
               />
               <ErrorMessage
-                name="userPassword"
+                name="password"
                 component="span"
                 className={errorText}
               />
             </label>
 
-            <button type="submit" className={btn}>
+            <button
+              disabled={Object.keys(errors).length > 0}
+              type="submit"
+              className={btn}
+            >
               Sign Up
             </button>
           </Form>
