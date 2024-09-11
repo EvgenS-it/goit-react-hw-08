@@ -12,16 +12,7 @@ const INITIAL_STATE = {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: INITIAL_STATE,
-  // reducers: {
-  //   addContact: (state, action) => {
-  //     state.contacts.items.push(action.payload);
-  //   },
-  //   deleteContact: (state, action) => {
-  //     state.contacts.items = state.contacts.items.filter(
-  //       contact => contact.id !== action.payload
-  //     );
-  //   },
-  // },
+  reducers: {},
   extraReducers: builder =>
     builder
       .addCase(fetchContacts.pending, state => {
@@ -67,47 +58,3 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-
-// Vanila redux logic
-// export const contactsReducer = (state = INITIAL_STATE, action) => {
-//   switch (action.type) {
-//     case 'contacts/addContact': {
-//       return {
-//         ...state,
-//         contacts: {
-//           items: [...state.contacts.items, action.payload],
-//         },
-//       };
-//     }
-
-//     case 'contacts/deleteContact': {
-//       return {
-//         ...state,
-//         contacts: {
-//           items: state.contacts.items.filter(
-//             contact => contact.id !== action.payload
-//           ),
-//         },
-//       };
-//     }
-
-//     default:
-//       return state;
-//   }
-// };
-
-// // action
-// export const addContact = payload => {
-//   return {
-//     type: 'contacts/addContact',
-//     payload,
-//   };
-// };
-
-// // action
-// export const deleteContact = contactId => {
-//   return {
-//     type: 'contacts/deleteContact',
-//     payload: contactId,
-//   };
-// };
