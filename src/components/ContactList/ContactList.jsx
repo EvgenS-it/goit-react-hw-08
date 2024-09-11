@@ -8,6 +8,7 @@ const ContactList = () => {
 
   return (
     <ul className={css.contactList}>
+      {filteredContacts?.length === 0 && <li>Contacts list is empty</li>}
       {filteredContacts.map(contact => {
         return (
           <li key={contact.id} className={css.contactItem}>
