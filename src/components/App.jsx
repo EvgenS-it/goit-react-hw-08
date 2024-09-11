@@ -1,7 +1,10 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import AppBar from './AppBar/AppBar.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { refreshUser } from '../redux/auth/authOps.js';
+import { selectAuthIsRefreshing } from '../redux/auth/authSelectors.js';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage.jsx'));
 const RegistrationPage = lazy(() =>
@@ -16,6 +19,15 @@ const NotFoundPage = lazy(() =>
 );
 
 function App() {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectAuthIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (isRefreshing) return <p>User is refreshing, please wait..</p>;
+
   return (
     <>
       <header>
