@@ -5,6 +5,8 @@ import AppBar from './AppBar/AppBar.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../redux/auth/authOps.js';
 import { selectAuthIsRefreshing } from '../redux/auth/authSelectors.js';
+import { PrivateRoute } from './Route/PrivateRoute.jsx';
+import { RestrictedRoute } from './Route/RestrictedRoute.jsx';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage.jsx'));
 const RegistrationPage = lazy(() =>
@@ -37,9 +39,18 @@ function App() {
         <Suspense fallback={<h1>LOADING...</h1>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/register" element={<RegistrationPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/contacts" element={<ContactsPage />} />
+            <Route
+              path="/register"
+              element={<RestrictedRoute component={<RegistrationPage />} />}
+            />
+            <Route
+              path="/login"
+              element={<RestrictedRoute component={<LoginPage />} />}
+            />
+            <Route
+              path="/contacts"
+              element={<PrivateRoute component={<ContactsPage />} />}
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

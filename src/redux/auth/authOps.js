@@ -29,7 +29,6 @@ export const login = createAsyncThunk(
     try {
       const { data } = await instance.post('users/login', formData);
       setAuthHeaders(data.token);
-      console.log('data from server:', data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -45,10 +44,17 @@ export const refreshUser = createAsyncThunk(
       const token = state.auth.token;
       setAuthHeaders(token);
       const { data } = await instance.get('users/current');
-      console.log('data: ', data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
+  },
+  {
+    condition: (_, thunkApi) => {
+      const state = thunkApi.getState();
+      const token = state.auth.token;
+      if (token) return true;
+      return false;
+    },
   }
 );
