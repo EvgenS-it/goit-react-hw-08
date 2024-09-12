@@ -1,0 +1,57 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 360px;
+  width: 100%;
+  margin-bottom: 25px;
+  margin-top: 15px;
+  padding: 10px;
+  outline: none;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 105%;
+  letter-spacing: -0.03em;
+  margin-top: 5px;
+}
+
+.input {
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.input:hover,
+.input:focus {
+  border: 1px solid rgb(8, 127, 246);
+  cursor: pointer;
+}
+
+.btn {
+  padding: 5px;
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+.errorText {
+  color: red;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: -0.02em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

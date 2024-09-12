@@ -1,12 +1,12 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import AppBar from './AppBar/AppBar.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations.js';
 import { selectAuthIsRefreshing } from '../redux/auth/selectors.js';
 import { PrivateRoute } from './Route/PrivateRoute.jsx';
 import { RestrictedRoute } from './Route/RestrictedRoute.jsx';
+import Layout from './Layout/Layout.jsx';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage.jsx'));
 const RegistrationPage = lazy(() =>
@@ -32,11 +32,8 @@ function App() {
 
   return (
     <>
-      <header>
-        <AppBar />
-      </header>
-      <main>
-        <Suspense fallback={<h1>LOADING...</h1>}>
+      <Layout>
+        <Suspense fallback={<p>LOADING...</p>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
@@ -54,7 +51,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
-      </main>
+      </Layout>
     </>
   );
 }
