@@ -3,8 +3,8 @@ import css from './LoginPage.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { login } from '../../redux/auth/authOps.js';
-import { selectAuthError } from '../../redux/auth/authSelectors.js';
+import { login } from '../../redux/auth/operations.js';
+import { selectAuthError } from '../../redux/auth/selectors.js';
 
 const LoginValidationSchema = Yup.object().shape({
   email: Yup.string()

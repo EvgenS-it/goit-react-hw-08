@@ -2,7 +2,7 @@ import css from './ContactForm.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
-import { addContact } from '../../redux/contacts/contactsOps';
+import { addContact } from '../../redux/contacts/operations';
 import toast from 'react-hot-toast';
 
 // for Yup

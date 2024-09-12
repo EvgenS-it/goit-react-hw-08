@@ -1,7 +1,7 @@
 import css from './Navigation.module.css';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectAuthIsLoggedIn } from '../../redux/auth/authSelectors';
+import { selectAuthIsLoggedIn } from '../../redux/auth/selectors';
 
 const classNames = ({ isActive }) => {
   return `${css.link} ${isActive ? css.active : ''}`;

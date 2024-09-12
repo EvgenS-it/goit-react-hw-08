@@ -3,8 +3,8 @@ import css from './RegistrationPage.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { register } from '../../redux/auth/authOps.js';
-import { selectAuthError } from '../../redux/auth/authSelectors.js';
+import { register } from '../../redux/auth/operations.js';
+import { selectAuthError } from '../../redux/auth/selectors.js';
 
 const RegisterValidationSchema = Yup.object().shape({
   name: Yup.string()

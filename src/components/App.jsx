@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import AppBar from './AppBar/AppBar.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshUser } from '../redux/auth/authOps.js';
-import { selectAuthIsRefreshing } from '../redux/auth/authSelectors.js';
+import { refreshUser } from '../redux/auth/operations.js';
+import { selectAuthIsRefreshing } from '../redux/auth/selectors.js';
 import { PrivateRoute } from './Route/PrivateRoute.jsx';
 import { RestrictedRoute } from './Route/RestrictedRoute.jsx';
 
