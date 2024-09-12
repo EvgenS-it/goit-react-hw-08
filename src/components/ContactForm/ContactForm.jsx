@@ -3,6 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { addContact } from '../../redux/contacts/contactsOps';
+import toast from 'react-hot-toast';
 
 // for Yup
 const phoneRegExp = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
@@ -34,7 +35,11 @@ const ContactForm = () => {
       number: values.contactNumber,
     };
 
-    dispatch(addContact(contactObject));
+    dispatch(addContact(contactObject))
+      .unwrap()
+      .then(() => {
+        toast.success('Contact added succesfully!');
+      });
     actions.resetForm();
   };
 

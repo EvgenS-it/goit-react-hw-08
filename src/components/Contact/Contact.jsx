@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contacts/contactsOps';
 import { FaUser } from 'react-icons/fa6';
 import { FaPhone } from 'react-icons/fa6';
+import toast from 'react-hot-toast';
 
 const Contact = ({ name, number, id }) => {
   const { infoContainer, icon, text, btn } = css;
@@ -11,7 +12,11 @@ const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
   const onDeleteContact = contactId => {
     const thunk = deleteContact(contactId);
-    dispatch(thunk);
+    dispatch(thunk)
+      .unwrap()
+      .then(() => {
+        toast.success('Contact deleted succesfully!');
+      });
   };
 
   return (
